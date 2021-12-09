@@ -6,13 +6,20 @@
         private $primeVideoData;
         private $primeTwichData;
     
-        function __construct($isActive, $subscriptionDate, $couponPointCounter, $primeVideoData, $primeTwichData)
+        //function __construct($isActive, $subscriptionDate, $couponPointCounter, $primeVideoData, $primeTwichData)
+        function __construct($userData, $userPrimeData)
         {
-            $this->isActive = $isActive;
-            $this->subscriptionDate = $subscriptionDate;
-            $this->couponPointCounter = $couponPointCounter;
-            $this->primeVideoData = $primeVideoData;
-            $this->primeTwichData = $primeTwichData;
+            parent::__construct(
+                $userData["name"],
+                $userData["surname"],
+                $userData["address"],
+                $userData["creditCard"]
+            );
+            $this->isActive = true;
+            $this->subscriptionDate = $userPrimeData["subscriptionDate"];
+            $this->couponPointCounter = $userPrimeData["couponPointCounter"];
+            $this->primeVideoData = $userPrimeData["primeVideoData"];
+            $this->primeTwichData = $userPrimeData["primeTwichData"];
         }
 
         public function setActive($isActive){

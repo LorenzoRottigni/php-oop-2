@@ -11,11 +11,16 @@
             $this->name = $name;     
             $this->surname = $surname;   
             $this->address = $address;   
-            $this->creditCard = $creditCard;          
+            $this->creditCard = new CreditCard($creditCard["iban"],$creditCard["cvv"],$creditCard["holder"],$creditCard["expirationDate"]);          
         }
 
         public function setName($name){
-            $this->name = $name;
+            if(is_int($name)){
+                throw new Exception("its not a string");
+            }else{
+                $this->name = $name;
+            }
+            
         }
         public function setSurname($surname){
             $this->name = $surname;
@@ -39,7 +44,7 @@
             return $this->address;
         }
         public function getCreditCard(){
-            return $this->creditCard;
+            return $this->creditCard->getIban();
         }
         public function getPurchaseArray(){
             return $this->purchaseArray;
